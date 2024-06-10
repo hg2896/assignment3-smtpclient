@@ -39,7 +39,7 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
 
     # Send DATA command and handle server response.
     # Fill in start
-    clientSocket.send("DATA: this is a test email\r\n").encode()
+    clientSocket.send("DATA:\r\n").encode()
     recv4 = clientSocket.recv(1024).decode()
     # Fill in end
 
