@@ -9,14 +9,15 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
 
     # Create socket called clientSocket and establish a TCP connection with mailserver and port
     clientSocket = socket(AF_INET, SOCK_STREAM)
-    clientSocket.bind(("", port))
+    #clientSocket.bind(("", port))
     clientSocket.connect((mailserver, port))
 
     recv = clientSocket.recv(1024).decode()
     #print(recv) #You can use these print statement to validate return codes from the server. comment out later
     #if recv[:3] != '220':
     #    print('220 reply not received from server.')
-
+    #else:
+    #    print ("connected to server")
     # Send HELO command and print server response.
     heloCommand = 'HELO Alice\r\n'
     clientSocket.send(heloCommand.encode())
@@ -27,19 +28,19 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
 
     # Send MAIL FROM command and handle server response.
     # Fill in start
-    clientSocket.send("MAIL FROM: <hg2896@nyu.edu>\r\n").encode()
+    clientSocket.send("MAIL FROM: <hg2896@nyu.edu>\r\n".encode())
     recv2 = clientSocket.recv(1024).decode()
     # Fill in end
 
     # Send RCPT TO command and handle server response.
     # Fill in start
-    clientSocket.send("RCPT TO: <hg2896@nyu.edu>\r\n").encode()
+    clientSocket.send("RCPT TO: <hg2896@nyu.edu>\r\n".encode())
     recv3 = clientSocket.recv(1024).decode()
     # Fill in end
 
     # Send DATA command and handle server response.
     # Fill in start
-    clientSocket.send("DATA:\r\n").encode()
+    clientSocket.send("DATA:\r\n".encode())
     recv4 = clientSocket.recv(1024).decode()
     # Fill in end
 
